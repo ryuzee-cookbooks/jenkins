@@ -8,5 +8,5 @@ RSpec.configure do |c|
   c.before :all do
     c.os = backend(Serverspec::Commands::Base).check_os
   end
-  c.path = "/sbin:/user/sbin"
+  c.path = "/sbin:/usr/sbin"
 end
