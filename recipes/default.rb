@@ -37,6 +37,30 @@ when "centos", "amazon"
     action :restart
   end
 
+when "ubuntu"
+
+  package "apt" do
+    action :upgrade
+  end
+
+  include_recipe "apt"
+
+  apt_repository "jenkins" do
+    uri "http://pkg.jenkins-ci.org/debian"
+    key "http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key"
+    components ["binary/"]
+    action :add
+    notifies :run, "execute[apt-get update]", :immediately
+  end
+
+  package "jenkins" do
+    action :install
+  end
+
+  service "jenkins" do
+    action :restart
+  end
+
 end
 
 # vim: filetype=ruby.chef
