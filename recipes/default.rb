@@ -34,7 +34,7 @@ when "centos", "amazon"
   end
 
   service "jenkins" do
-    action :restart
+    action [:enable , :start]
   end
 
 when "ubuntu"
@@ -58,7 +58,7 @@ when "ubuntu"
   end
 
   service "jenkins" do
-    action :restart
+    action [:enable, :start]
   end
 
 end
