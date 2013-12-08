@@ -39,9 +39,9 @@ when "centos", "amazon"
 
 when "ubuntu"
 
-  package "apt" do
-    action :upgrade
-  end
+#  package "apt" do
+#    action :upgrade
+#  end
 
   include_recipe "apt"
 
