@@ -22,7 +22,7 @@ when "centos", "amazon"
     description "jenkins"
     url "http://pkg.jenkins-ci.org/redhat"
     gpgkey "http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"
-    enabled 1 
+    action :create
   end
 
   package "jenkins" do
