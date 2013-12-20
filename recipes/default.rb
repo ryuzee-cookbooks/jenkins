@@ -18,14 +18,10 @@ when "centos", "amazon"
 
   include_recipe "yum-epel"
 
-  yum_key "jenkins-ci.org.key" do
-    url "http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"
-    action :add
-  end
-
   yum_repository "jenkins" do
     description "jenkins"
     url "http://pkg.jenkins-ci.org/redhat"
+    gpgkey "http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"
     enabled 1 
   end
 
