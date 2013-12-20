@@ -5,6 +5,7 @@ license          "MIT"
 description      "Installs/Configures jenkins"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.3"
-depends          "yum"
+depends          "yum", ">= 3.0"
+depends          "yum-epel"
 depends          "apt"
 depends          "apache2"

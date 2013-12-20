@@ -16,7 +16,7 @@ when "centos", "amazon"
     action :install
   end
 
-  include_recipe "yum"
+  include_recipe "yum-epel"
 
   yum_key "jenkins-ci.org.key" do
     url "http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"
