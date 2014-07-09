@@ -2,6 +2,10 @@
 driver:
   name: docker 
   socket: <%= ENV['DOCKER_HOST'] %>
+driver_config:
+  require_chef_omnibus: true
+busser:
+  sudo: true
 
 provisioner:
   name: chef_solo
