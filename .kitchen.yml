@@ -21,6 +21,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[ca-certificates::default]
       - recipe[jenkins::default]
       - recipe[jenkins::http]
     attributes:
