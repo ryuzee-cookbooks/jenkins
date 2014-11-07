@@ -8,4 +8,6 @@ version          "0.0.3"
 depends          "yum", ">= 3.0"
 depends          "yum-epel"
 depends          "apt"
+depends          "ca-certificates"
 depends          "apache2-simple"
+
