@@ -29,7 +29,14 @@ when "centos", "amazon"
     mode "0440"
     notifies :restart, "service[jenkins]"
   end
-  
+
+  cmd = <<"EOS"
+sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
+EOS
+
+  e = execute cmd do
+    action :run
+  end
 
   cmd = <<"EOS"
 sudo -H -u jenkins -s bash -c 'curl -L https://get.rvm.io | bash'
