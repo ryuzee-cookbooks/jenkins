@@ -24,4 +24,5 @@ suites:
       - recipe[ca-certificates::default]
       - recipe[jenkins::default]
       - recipe[jenkins::http]
+      - recipe[jenkins::rubyenv]
     attributes:

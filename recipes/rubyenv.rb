@@ -22,29 +22,25 @@
 case node[:platform]
 when "centos", "amazon"
 
-  include_recipe "jenkins"
-
-  ## Jenkinsの起動直後に取得に失敗する場合があるが自動リトライされるので非力な環境以外は問題ない
-  remote_file "/var/lib/jenkins/jenkins-cli.jar" do
-    source "http://localhost:8080/jnlpJars/jenkins-cli.jar"
+  template "/etc/sudoers.d/jenkins" do
+    source "sudoers.erb"
+    owner "root"
+    group "root"
+    mode "0440"
+    notifies :restart, "service[jenkins]"
   end
+  
 
   cmd = <<"EOS"
-  sudo wget -O default.js http://updates.jenkins-ci.org/update-center.json && sed '1d;$d' default.js > default.json && curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8080/updateCenter/byId/default/postBack
+sudo -H -u jenkins -s bash -c 'curl -L https://get.rvm.io | bash'
+sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm install 1.9.3'
+sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm use 1.9.3 --default' 
 EOS
+
   e = execute cmd do
     action :run
   end
 
-  node['jenkins']['plugins'].each do |plugin_name|
-    e = execute "sudo /usr/bin/java -jar /var/lib/jenkins/jenkins-cli.jar -s http://localhost:8080 install-plugin ".concat(plugin_name) do
-      action :run
-    end
-  end
-
-  service "jenkins" do
-    action :restart
-  end
 end
 
 # vim: filetype=ruby.chef
