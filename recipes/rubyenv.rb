@@ -40,8 +40,8 @@ EOS
 
   cmd = <<"EOS"
 sudo -H -u jenkins -s bash -c 'curl -L https://get.rvm.io | bash'
-sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm install 1.9.3'
-sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm use 1.9.3 --default' 
+sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm install 2.1.5'
+sudo -H -u jenkins -s bash -c 'source /var/lib/jenkins/.rvm/scripts/rvm; rvm use 2.1.5 --default' 
 EOS
 
   e = execute cmd do
