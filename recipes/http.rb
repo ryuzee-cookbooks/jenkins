@@ -18,11 +18,11 @@ when "ubuntu", "debian"
   execute cmd do
     action :run
     only_if do
-      ! File.exists?("/etc/apache2/conf-enabled/jenkins.conf") 
+      ! File.exists?("/etc/apache2/mods-enabled/jenkins.conf") 
     end
   end
 
-  template "/etc/apache2/conf-enabled/jenkins.conf" do
+  template "/etc/apache2/mods-enabled/jenkins.conf" do
     source "jenkins.conf.erb"
     owner "root"
     group "root"

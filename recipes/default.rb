@@ -12,7 +12,13 @@
 case node[:platform]
 when "centos", "amazon"
 
-  package "java-1.6.0-openjdk" do
+  %w{java-1.6.0-openjdk}.each do |package_name|
+    package package_name do
+      action :remove
+    end
+  end
+
+  package "java-1.8.0-openjdk" do
     action :install
   end
 
@@ -35,11 +41,17 @@ when "centos", "amazon"
 
 when "ubuntu"
 
-#  package "apt" do
-#    action :upgrade
-#  end
-
   include_recipe "apt"
+
+  %w{openjdk-6-jre openjdk-6-jdk}.each do |package_name|
+    package package_name do
+      action :remove
+    end
+  end
+
+  package "openjdk-7-jdk" do
+    action :install
+  end
 
   apt_repository "jenkins" do
     uri "http://pkg.jenkins-ci.org/debian"
